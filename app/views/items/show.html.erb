@@ -20,3 +20,12 @@
     <%= link_to '編集', edit_item_path(@item.id)%>
   <% end %>
 </div>
+
+<div class="comment-form">
+  <% if user_signed_in? %>
+    <%= form_with model: [@item, @comment], id: "comment-form" do |f| %>
+      <%= f.text_area :text , class: "comment-text"%>
+      <%= f.submit "コメントをする", class: "comment-submit" %>
+    <% end %>
+  <% end %>
+</div>
