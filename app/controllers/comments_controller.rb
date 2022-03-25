@@ -3,8 +3,9 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @item = Item.find(params[:item_id])
     if @comment.save
+      # @itemに紐づいた経路でJSにコメントと送信者のデータを送信
       CommentChannel.broadcast_to @item, { comment: @comment, user: @comment.user }
-
+      # サーバーからクライアントへデータを送る
       ActionCable.server.broadcast "comment_channel", {comment: @comment, user: @comment.user}
     end
   end

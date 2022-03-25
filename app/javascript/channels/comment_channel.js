@@ -1,3 +1,4 @@
+// クライアントの画面に描写するためのファイル
 import consumer from "./consumer"
 
 if(location.pathname.match(/\/items\/\d/)){
